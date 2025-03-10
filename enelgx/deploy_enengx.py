@@ -11,7 +11,7 @@ def load_data():
 
 df = load_data()
 
-st.title("📊 Análisis Financiero de EnelGX")
+st.title("Informacion ENELGXCH")
 
 metric = st.selectbox("Selecciona una métrica:", df.index)
 
