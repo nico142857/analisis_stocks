@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("enelgx_trimestre.csv", index_col=0)
+    df = pd.read_csv("enelgx/enelgx_trimestre.csv", index_col=0)
     df = df.loc[:, ~df.columns.duplicated()].copy()
     df = df[~df.index.duplicated(keep='first')]
     return df
