@@ -11,9 +11,10 @@ def load_data():
 
 df = load_data()
 
-st.title("Informacion ENELGXCH")
+st.title("Informacion EnelGXCH")
 
-metric = st.selectbox("Selecciona una métrica:", df.index)
+metrics = st.multiselect("Selecciona métricas:", df.index, default=[df.index[0]])
 
-fig = px.line(df.T, y=metric, title=f"Evolución de {metric}", markers=True)
+fig = px.line(df.T, y=metrics, title=f"Evolución de {', '.join(metrics)}", markers=True)
+
 st.plotly_chart(fig, use_container_width=True)
