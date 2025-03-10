@@ -1,10 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+import os
+
+script_dir = os.path.dirname(__file__)
+file_path = os.path.join(script_dir, "enelgx_trimestre.csv")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("enelgx/enelgx_trimestre.csv", index_col=0)
+    df = pd.read_csv(file_path, index_col=0)
     df = df.loc[:, ~df.columns.duplicated()].copy()
     df = df[~df.index.duplicated(keep='first')]
     return df
