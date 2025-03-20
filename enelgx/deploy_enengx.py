@@ -15,24 +15,22 @@ def load_data():
 
 df = load_data()
 
-st.title("Informacion Enel Generacion Chile")
+st.title("Información Enel Generación Chile")
 
 metrics = st.multiselect("Selecciona métricas:", df.index, default=[df.index[0]])
 
 fig = go.Figure()
 
 if len(metrics) > 0:
-    fig.add_trace(go.Scatter(
+    fig.add_trace(go.Bar(
         x=df.T.index, y=df.T[metrics[0]],
-        mode="lines+markers",
         name=metrics[0],
         yaxis="y1"
     ))
 
 if len(metrics) > 1:
-    fig.add_trace(go.Scatter(
+    fig.add_trace(go.Bar(
         x=df.T.index, y=df.T[metrics[1]],
-        mode="lines+markers",
         name=metrics[1],
         yaxis="y2"
     ))
@@ -50,7 +48,8 @@ fig.update_layout(
     xaxis_title="Trimestres",
     yaxis=dict(title=metrics[0]),
     legend=dict(x=0, y=1),
-    xaxis_tickangle=270
+    xaxis_tickangle=270,
+    barmode='group'  # To group bars when multiple metrics are selected
 )
 
 st.plotly_chart(fig, use_container_width=True)
