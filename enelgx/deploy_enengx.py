@@ -29,8 +29,9 @@ if len(metrics) > 0:
     ))
 
 if len(metrics) > 1:
-    fig.add_trace(go.Bar(
+    fig.add_trace(go.Scatter(
         x=df.T.index, y=df.T[metrics[1]],
+        mode="lines+markers",
         name=metrics[1],
         yaxis="y2"
     ))
